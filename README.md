@@ -28,7 +28,9 @@ This demo shows a topology using 'Routing on the Host' to add host reachability 
 ```
 
 
-When the lab is operational, each server (server01 and server02) will advertise their HP-Proxy service addresses (seperate from their interface addresses) into BGP. The leaf nodes (leaf01 and leaf02) are connected to both load balancers across different link networks and have two equal cost routes set up to the service IP. They know they can reach the service IP across both links and must make a routing decision about which one to use.
+When the lab is operational, each server (server01 and server02) is configured to run Apache on 8081 and serve a generic index.html. Further, haproxy has been deployed to each node and configured to load balance across both servers. The servers (server01 and server02) are also configured to advertise their haproxy service addresses (seperate from their interface addresses) into BGP.
+
+The leaf nodes (leaf01 and leaf02) are connected to both load balancers across different link networks and have two equal cost routes set up to the service IP. They know they can reach the service IP across both links and must make a routing decision about which one to use.
 
 This demo is written for the [cldemo-vagrant](https://github.com/cumulusnetworks/cldemo-vagrant) reference topology and applies the reference BGP unnumbered configuration from [cldemo-config-routing](https://github.com/cumulusnetworks/cldemo-config-routing).
 
