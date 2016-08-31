@@ -1,0 +1,19 @@
+# Install haproxy
+- name: install haproxy
+  apt: name=haproxy update_cache=yes state=present
+
+# Enable haproxy at boot
+- name: enable init script
+  replace: dest='/etc/default/haproxy'
+   regexp='ENABLED=0'
+   replace='ENABLED=1'
+
+# Configure haproxy
+- name: update haproxy config
+  template: src=templates/haproxy.cfg
+    dest=/etc/haproxy/haproxy.cfg
+    backup=yes
+
+# Restart haproxy
+- name: restart haproxy
+  service: name=haproxy state=restarted
