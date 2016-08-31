@@ -55,3 +55,13 @@ Quickstart: Run the demo
     sudo apt-get update
     sudo apt-get install ansible -qy
 
+### Resources
+
+- [Getting started with Topology Converter](http://blog.codybunch.com/2016/08/22/Revisiting-BGP-on-Linux-w-Cumulus-Topology-Converter/)
+- [Sysadvent Load Balancing Across Layer 3](https://sysadvent.blogspot.com/2014/12/day-11-turning-off-pacemaker-load.html)
+- [High availability with ExaBGP](https://vincent.bernat.im/en/blog/2013-exabgp-highavailability.html)
+- [Ansible Variables](https://docs.ansible.com/ansible/playbooks_variables.html)
+- [Configure Apache with Ansible](https://www.digitalocean.com/community/tutorials/how-to-configure-apache-using-ansible-on-ubuntu-14-04)
+- [Configure haproxy with Ansible](http://blog.toast38coza.me/setup-and-configure-haproxy-with-ansible/)
+- [OpenSource Routing, Practical Lab](https://keepingitclassless.net/2015/06/open-source-routing-practical-lab/)
+- [OpenSource Routing, Comparison](https://keepingitclassless.net/2015/05/open-source-routing-comparison/)
