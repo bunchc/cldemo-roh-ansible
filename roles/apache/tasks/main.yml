@@ -4,21 +4,20 @@
 - name: install apache2
   apt: name=apache2 update_cache=yes
 
-# Configure apache2 to run on a non-default port. We'll then serve this port
-# up as 80 via haproxy
-- name: apache2 listen on port 8081
-  lineinfile: dest=/etc/apache2/ports.conf regexp="^Listen 80" line="Listen 8081" state=present
-  notify:
-    - restart apache2
-
-- name: apache2 virtualhost on port 8081
-  lineinfile: dest=/etc/apache2/sites-available/000-default.conf regexp="^<VirtualHost \*:80>" line="<VirtualHost *:8081>" state=present
-  notify:
-    - restart apache2
-
 # If apache is not running, this starts it. Automation can be used to force a
 # a server into a consistent state - if apache crashed or stopped running for
 # any reason, this playbook will attempt to get it running again. If it's already
 # running, this step is skipped.
 - name: run apache2
   service: name=apache2 state=started
+
+# Configure apache2 to run on a non-default port. We'll then serve this port
+# up as 80 via haproxy
+- name: apache2 listen on port 8081
+  lineinfile: dest=/etc/apache2/ports.conf regexp="^Listen 80" line="Listen 8081" state=present
+
+- name: apache2 virtualhost on port 8081
+  lineinfile: dest=/etc/apache2/sites-available/000-default.conf regexp="^<VirtualHost \*:80>" line="<VirtualHost *:8081>" state=present
+
+- name: restart apache2
+  service: name=apache2 state=restarted
