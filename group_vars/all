@@ -84,3 +84,14 @@ interfaces:
         neighbors:
             eth1:
             eth2:
+
+vars:
+  haproxy_app_name: myapp
+  haproxy_mode: http
+  haproxy_enable_stats: enable
+  haproxy_algorithm: roundrobin
+  haproxy_backend_servers:
+    - {name: server01, ip: 10.0.0.31, port: 8081, paramstring: cookie A check}
+    - {name: server02, ip: 10.0.0.32, port: 8081, paramstring: cookie A check}
+  haproxy_stats_users:
+    - {username: admin, password: demostack}
