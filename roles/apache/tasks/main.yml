@@ -22,6 +22,3 @@
 # running, this step is skipped.
 - name: run apache2
   service: name=apache2 state=started
-
-- name: restart apache2
-  service: name=apache2 state=restarted

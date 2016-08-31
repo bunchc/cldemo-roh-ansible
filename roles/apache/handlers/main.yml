@@ -1,0 +1,3 @@
+# Handler for restarting apaches
+- name: restart apache2
+  service: name=apache2 state=restarted

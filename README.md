@@ -41,12 +41,13 @@ Quickstart: Run the demo
 
     ### setup oob mgmt server
     vagrant ssh oob-mgmt-server
+    sudo ansible-galaxy install geerlingguy.haproxy
     sudo su - cumulus
     sudo apt-get install software-properties-common -y
     sudo apt-add-repository ppa:ansible/ansible -y
     sudo apt-get update
     sudo apt-get install ansible -qy
-    sudo ansible-galaxy install geerlingguy.haproxy
+
 
     ### Run the ROH demo
     git clone https://github.com/bunchc/cldemo-roh-ansible
