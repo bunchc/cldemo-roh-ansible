@@ -22,6 +22,9 @@
 - name: create virtual host file
   template: src=virtualhost.cnf dest=/etc/apache2/sites-available/{{ domain }}.conf
 
+- name: create webroot
+  file: path=/var/www/{{ domain }} state=directory
+
 - name: create index file for site
   template: src=index.j2 dest=/var/www/{{ domain }}/index.html
 
