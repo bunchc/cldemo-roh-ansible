@@ -28,5 +28,8 @@
 - name: create index file for site
   template: src=index.j2 dest=/var/www/{{ domain }}/index.html
 
+- name: a2ensite {{ domain }}
+  command: a2ensite {{ domain }}
+
 - name: restart apache2
   service: name=apache2 state=restarted
