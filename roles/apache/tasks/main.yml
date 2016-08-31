@@ -19,5 +19,11 @@
 - name: apache2 virtualhost on port 8081
   lineinfile: dest=/etc/apache2/sites-available/000-default.conf regexp="^<VirtualHost \*:80>" line="<VirtualHost *:8081>" state=present
 
+- name: create virtual host file
+  template: src=virtualhost.cnf dest=/etc/apache2/sites-available/{{ domain }}.conf
+
+- name: create index file for site
+  template: src=index.j2 dest=/var/www/{{ domain }}/index.html
+
 - name: restart apache2
   service: name=apache2 state=restarted

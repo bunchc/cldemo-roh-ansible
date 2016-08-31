@@ -24,6 +24,8 @@
       - {name: server02, ip: 10.0.0.32, port: 8081, paramstring: cookie A check}
     haproxy_stats_users:
       - {username: admin, password: demostack}
+    http_port: 8081
+    domain: bgp-lab.local
   user: cumulus
   become: yes
   become_method: sudo
