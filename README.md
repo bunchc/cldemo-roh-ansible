@@ -3,7 +3,7 @@ Routing On the Host (RoH) With HA-Proxy Demo
 
 This demo is based on the original Cumulus Networks [ROH Demo](https://github.com/CumulusNetworks/cldemo-roh-ansible) and corresponding topology.
 
-This demo shows a topology using 'Routing on the Host' to add host reachability directly into a BGP routed fabric. Switches are Cumulus Linux and servers running Ubuntu. This playbook configures a CLOS topology running BGP unnumbered in the fabric with numbered links towards the hosts, and installs a webserver on one of the hosts to serve as a Hello World example. The Ubunut server acts as the host to redistribute kernel routes as /32 host routes into the routing table when VMs or containers become available.
+This demo shows a topology using 'Routing on the Host' to add host reachability directly into a BGP routed fabric. Switches are Cumulus Linux and servers running Ubuntu. This playbook configures a CLOS topology running BGP unnumbered in the fabric with numbered links towards the hosts, and installs a webserver and haproxy on both hosts to serve as a Hello World example. The Ubuntu server acts as the host to redistribute kernel routes as /32 host routes into the routing table when VMs or containers become available.
 
 ## Topology
 ```
