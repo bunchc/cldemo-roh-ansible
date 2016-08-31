@@ -20,9 +20,4 @@
   roles:
     - ifupdown
     - quagga-roh
-- hosts: server02
-  user: cumulus
-  become: yes
-  become_method: sudo
-  roles:
     - apache
