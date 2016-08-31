@@ -38,23 +38,18 @@ Quickstart: Run the demo
     git clone https://github.com/cumulusnetworks/cldemo-vagrant
     cd cldemo-vagrant
     vagrant up oob-mgmt-server oob-mgmt-switch leaf01 leaf02 spine01 spine02 server01 server02
+    ### Run the ROH demo
+    vagrant ssh oob-mgmt-server
+    sudo su - cumulus
+    git clone https://github.com/bunchc/cldemo-roh-ansible
+    cd cldemo-roh-ansible
+    ansible-playbook run-demo.yml
 
-    ### setup oob mgmt server
+    ### if needed, setup oob mgmt server
     vagrant ssh oob-mgmt-server
     sudo su - cumulus
     sudo apt-get install software-properties-common -y
     sudo apt-add-repository ppa:ansible/ansible -y
     sudo apt-get update
     sudo apt-get install ansible -qy
-
-
-    ### Run the ROH demo
-    git clone https://github.com/bunchc/cldemo-roh-ansible
-    cd cldemo-roh-ansible
-    ansible-playbook run-demo.yml
-
-    ### check reachability of server02 from server01
-    ssh server01
-    wget 10.0.0.32
-    cat index.html
 
