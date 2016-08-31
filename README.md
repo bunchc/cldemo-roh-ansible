@@ -1,10 +1,36 @@
-Routing On the Host (RoH) Demo
+Routing On the Host (RoH) With HA-Proxy Demo
 ===========================
 
-This demo shows a topology using 'Routing on the Host' to add host reachability directly into a BGP routed fabric. Switches are Cumulus Linux and servers running Ubuntu. This playbook configures a CLOS topology running BGP unnumbered in the fabric with numbered links towards the hosts, and installs a webserver on one of the hosts to serve as a Hello World example. The Ubunut server acts as the host to redistribute kernel routes as /32 host routes into the routing table when VMs or containers become available. When the demo runs successfully, any server on the network should be able to access the webserver via the BGP routes established over the fabric.
+This demo is based on the original Cumulus Networks [ROH Demo](https://github.com/CumulusNetworks/cldemo-roh-ansible) and corresponding topology.
+
+This demo shows a topology using 'Routing on the Host' to add host reachability directly into a BGP routed fabric. Switches are Cumulus Linux and servers running Ubuntu. This playbook configures a CLOS topology running BGP unnumbered in the fabric with numbered links towards the hosts, and installs a webserver on one of the hosts to serve as a Hello World example. The Ubunut server acts as the host to redistribute kernel routes as /32 host routes into the routing table when VMs or containers become available.
+
+## Topology
+```
+     +------------+       +------------+
+     | spine01    |       | spine02    |
+     |            |       |            |
+     +------------+       +------------+
+     swp1 |    swp2 \   / swp1    | swp2
+          |           X           |
+    swp51 |   swp52 /   \ swp51   | swp52
+     +------------+       +------------+
+     | leaf01     |       | leaf02     |
+     |            |       |            |
+     +------------+       +------------+
+     swp1 |                       | swp2
+          |                       |
+     eth1 |                       | eth2
+     +------------+       +------------+
+     | server01   |       | server02   |
+     |            |       |            |
+     +------------+       +------------+
+```
+
+
+When the lab is operational, each server (server01 and server02) will advertise their HP-Proxy service addresses (seperate from their interface addresses) into BGP. The leaf nodes (leaf01 and leaf02) are connected to both load balancers across different link networks and have two equal cost routes set up to the service IP. They know they can reach the service IP across both links and must make a routing decision about which one to use.
 
 This demo is written for the [cldemo-vagrant](https://github.com/cumulusnetworks/cldemo-vagrant) reference topology and applies the reference BGP unnumbered configuration from [cldemo-config-routing](https://github.com/cumulusnetworks/cldemo-config-routing).
-
 
 Quickstart: Run the demo
 ------------------------
@@ -20,9 +46,10 @@ Quickstart: Run the demo
     sudo apt-add-repository ppa:ansible/ansible -y
     sudo apt-get update
     sudo apt-get install ansible -qy
+    sudo ansible-galaxy install geerlingguy.haproxy
 
     ### Run the ROH demo
-    git clone https://github.com/cumulusnetworks/cldemo-roh-ansible
+    git clone https://github.com/bunchc/cldemo-roh-ansible
     cd cldemo-roh-ansible
     ansible-playbook run-demo.yml
 
@@ -30,3 +57,4 @@ Quickstart: Run the demo
     ssh server01
     wget 10.0.0.32
     cat index.html
+

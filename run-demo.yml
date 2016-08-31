@@ -21,3 +21,4 @@
     - ifupdown
     - quagga-roh
     - apache
+    - geerlingguy.haproxy
