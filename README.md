@@ -39,7 +39,12 @@ Quickstart: Run the demo
     ### Bring up the vagrant topology
     git clone https://github.com/cumulusnetworks/cldemo-vagrant
     cd cldemo-vagrant
-    vagrant up oob-mgmt-server oob-mgmt-switch leaf01 leaf02 spine01 spine02 server01 server02
+    
+    vagrant box add --provider=virtualbox --box-version=2.0.18 \ 
+    boxcutter/ubuntu1404
+    vagrant up oob-mgmt-server oob-mgmt-switch leaf01 leaf02 \
+    spine01 spine02 server01 server02
+    
     ### Run the ROH demo
     vagrant ssh oob-mgmt-server
     sudo su - cumulus
